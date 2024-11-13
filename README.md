@@ -204,6 +204,21 @@ query {
 - **Response**:
   - Returns a list of `Employee` objects, with each entry including details such as `name`, `age`, `employeeClass`, `subjects`, `attendance`, and `role`.
 
+**Example**
+```
+query {
+  getFilteredEmployees(
+    role: EMPLOYEE,
+    page: 1,
+    size: 5,
+    sort: "name"
+  ) {
+    employees {
+      name
+    }
+  }
+}
+```
 #### **Get All Employees (Admin Authentication Required)**
 - **Query Name**: `getAllEmployees`
 - **Description**: Allows an admin to retrieve a list of all employees in the system.
@@ -232,8 +247,6 @@ query {
   }
 }
 ```
-
-**Note**: Access to this query is restricted to users with the `ADMIN` role, ensuring that only administrators can view the full list of employees.
 
 ## Testing
 
