@@ -1,6 +1,17 @@
 type Query {
     getEmployee(id: Int!): Employee
     getAllEmployees(page: Int, size: Int, sort: String): EmployeePage
+    getFilteredEmployees(
+        name: String,
+        age: Int,
+        employeeClass: String,
+        subject: String,
+        attendance: String,
+        role: Role,
+        page: Int!,
+        size: Int!,
+        sort: String!
+    ): EmployeePage
 }
 
 type Mutation {

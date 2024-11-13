@@ -2,13 +2,16 @@ package com.example.Skill_Test_SD_Muhammad_Hashaam_Shahid.Service;
 
 import com.example.Skill_Test_SD_Muhammad_Hashaam_Shahid.Model.Employee;
 import com.example.Skill_Test_SD_Muhammad_Hashaam_Shahid.Model.EmployeePage;
+import com.example.Skill_Test_SD_Muhammad_Hashaam_Shahid.Model.Role;
 import com.example.Skill_Test_SD_Muhammad_Hashaam_Shahid.Repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,4 +61,32 @@ public class EmployeeService {
             return null;
         }
     }
+
+
+    public EmployeePage findByFilters(
+            String name,
+            Integer age,
+            String employeeClass,
+            String subject,
+            String attendance,
+            Role role,
+            int page,
+            int size,
+            String sort
+    ) {
+        page = page - 1;
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+
+        Page<Employee> employeePage = employeeRepository.findByFilters(
+                name, age, employeeClass, subject, attendance, role, pageable
+        );
+
+        return new EmployeePage(
+                employeePage.getContent(),
+                employeePage.getTotalPages(),
+                employeePage.getNumber(),
+                (int) employeePage.getTotalElements());
+    }
+
 }
