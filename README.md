@@ -134,7 +134,7 @@ mutation {
 ```
 
 
-#### 3. **Update Employee based on Id(Authentication Required)**
+#### 3. **Update Employee based on ID(Authentication Required)**
 - **Mutation Name**: `updateEmployee`
 - **Arguments**: (
   - `id`: Integer (The unique ID of the employee to be updated)
@@ -190,6 +190,20 @@ query {
   }
 }
 ```
+#### **Get Employees by Filter (Admin Authentication Required)**
+- **Query Name**: `getFilteredEmployees`
+- **Arguments**:
+  - `page`: Integer (The page number to retrieve, must be greater than 0)
+  - `size`: Integer (The number of employees per page, must be greater than 0)
+  - `sort`: String (The field by which to sort employees, should match a field in the Employee)
+  - `name`: String (optional)
+  - `age`: Integer (optional)
+  - `employeeClass`: String (optional)
+  - `subjects`: String (optional)
+  - `attendance`: String (optional)
+- **Response**:
+  - Returns a list of `Employee` objects, with each entry including details such as `name`, `age`, `employeeClass`, `subjects`, `attendance`, and `role`.
+
 #### **Get All Employees (Admin Authentication Required)**
 - **Query Name**: `getAllEmployees`
 - **Description**: Allows an admin to retrieve a list of all employees in the system.
@@ -271,7 +285,7 @@ For further improvements:
   - Creating refresh token
   - Security improvement against csrf and xss attacks
   - Some edge case handling
-  -  
+    
 ## Technologies Used:
 - **Spring Boot**: Backend framework for building the application.
 - **GraphQL**: API query language for handling data.
