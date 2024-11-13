@@ -41,6 +41,7 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @QueryMapping
     public EmployeePage getFilteredEmployees(
             @Argument String name,
