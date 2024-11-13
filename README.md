@@ -14,7 +14,7 @@ This project is a demo for an **Employee Management System** built with **Spring
 ## Dependencies
 Before you can run the project, make sure you have the following installed:
 
-- **Java 17 or higher**
+- **Java 23 or higher**
 - **Maven** (for building and managing dependencies)
 - **Spring Boot** (for backend development)
 - **GraphQL** (for API communication)
