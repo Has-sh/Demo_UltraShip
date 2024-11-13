@@ -1,0 +1,48 @@
+type Query {
+    getEmployee(id: Int!): Employee
+    getAllEmployees(page: Int, size: Int, sort: String): EmployeePage
+}
+
+type Mutation {
+    updateEmployee(id: Int!, name: String, age: Int, employeeClass: String, subjects: String, attendance: String): Employee
+    createEmployeeAndCredentials(
+        name: String!
+        age: Int!
+        employeeClass: String!
+        subjects: String
+        attendance: String
+        role: Role!
+        username: String!
+        password: String!
+    ): Credentials
+
+    login(username: String!, password: String!): String
+}
+
+enum Role {
+    ADMIN
+    EMPLOYEE
+}
+
+type Employee {
+    id: Int!
+    name: String!
+    age: Int!
+    employeeClass: String!
+    subjects: String!
+    attendance: String!
+    role: Role!
+    credentials: Credentials
+}
+
+type Credentials {
+    username: String!
+    password: String!
+}
+
+type EmployeePage {
+    employees: [Employee]
+    totalPages: Int
+    currentPage: Int
+    totalEmployees: Int
+}
